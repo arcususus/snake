@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Игра «Змейка»</title>
+    <!-- Стили CSS -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #game {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .snake {
+        position: relative;
+        background-color: #00FF00;
+        border-radius: 5px;
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s;
+      }
+
+      .food {
+        position: absolute;
+        background-color: red;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+      <div class="snake"></div>
+      <div class="food"></div>
+    </div>
+
+    <!-- Скрипт JavaScript -->
+    <script>
+      // Инициализация игры
+      let snake = document.querySelector('.snake');
+      let food = document.querySelector('.food');
+
+      // Генерация случайных координат для еды
+      function generateFood() {
+        let x = Math.floor(Math.random() * 99) + 1;
+        let y = Math.floor(Math.random() * 99) + 1;
+
+        food.style.left = `${x}%`;
+        food.style.top = `${y}%`;
+      }
+
+      // Движение змеи
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          snake.style.transform = `translateX(-10%)`;
+        } else if (e.key === 'ArrowRight') {
+          snake.style.transform = `translateX(10%)`;
+        } else if (e.key === 'ArrowUp') {
+          snake.style.transform = `translateY(-10%)`;
+        } else if (e.key === 'ArrowDown') {
+          snake.style.transform = `translateY(10%)`;
+        }
+      });
+
+      generateFood();
+    </script>
+  </body>
+</html>
